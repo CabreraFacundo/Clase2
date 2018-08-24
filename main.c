@@ -13,7 +13,7 @@ int main()
 
     for(i=0;i<10;i++)
     {
-        printf("Ingrese un numero sdsdsdf: ");
+        printf("Ingrese un numero por favor: ");
         scanf("%d",&numero);
         acumulador = acumulador + numero;
 
