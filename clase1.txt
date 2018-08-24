@@ -1,0 +1,150 @@
+diferencia entre framework y libreria,mas alla de que usemos typescript tenemos que aprender que reglas tiene angular
+cuando trabajamos con un framework tenemos que aprender las reglas del mismo,hay una estructura y modulos que ya tiene,
+lo que hoy instalamos (angular/cli),es para manejar nuestro proyecto desde la linea de comandos,despues para trabajar
+tenemos que descargar cierto codigo,
+
+		-->ng(referecia a la linea de comandos de angular),vamos a poder ejecutar toda la lista de comandos
+
+		-->para iniciar un proyecto,no la tenemos que hacer nosotros,la interfaz tiene un comando
+			que es --> NG NEW(creamos un proyecto nuevo,con algun nombre)  --> NG NEW MIAPP
+				(me tira error porque el node es version 7.2,y necesito la 8
+
+	para actualizar el node en linux es   --> NPM i -g n
+
+		->con nvm cambiamos los paquetes de version
+
+	como tuve problemas instalamos node y despues ponemos el comando,en alguna carpeta en escritorio moviendonos en cmd
+	con cd .. y cd carpeta
+
+
+
+(salio la version 6,vienen sacando versiones constantemente)
+
+
+nos crea 3 carpetas
+
+
+		--->e2e,para tests,no la vamos a tocar
+		--->nodemodules,donde se cargan todas las dependencias(pesa 321 megas vacio,sin nada,por eso no se sue)
+		-->source,donde vamos a trabajar nosotros
+	archivos sueltos
+	.editconfig->ver configuracion del editor
+	.gitignore->muchos archivos que son los que git no va a subir(uno son las dependencias,nodemodules)
+	si abrimos packagejson,tenemos una propiedad llamada dependencias y devdependencias,
+	la propiedad dependencias es un monton de paquetes o librerias que vamos a usar cuando tengamos en produccion
+	en nuestro proyecto,determinadas tranformacionse que le hacemos al codigo.el nombre y despuse la version
+	el devdependencies son todas las dependencias que vamos a usar en desarrollo,
+	cuando nosotros borramos nodemodule y queremos instalar las dependencias las instalamos de packagejson con NPM.
+	
+	NPM I
+	NPM isntall  	
+		(si no ponemos nada va directo al archivo packagejson e instala las dependencias),jamas pasamos la carpeta
+		node_modules)(descarga todas las de produccion y desarrollo,y las opcionales)
+
+
+	si ponemos NPM I @material,va a agarrar la carpeta material,lo esta haciendo mal,para esto tenemos banderas
+
+	NPM I @material --save-dev=>-D	     -->lo guarda en dev dependencies
+			--save    =>-P       -->lo guarda en produccion
+
+		(si estamos trabajando y queremos guardar un nuevo paquete)
+		(todo va al node_modules)
+
+	tambien tiene el comando NPX,en vez de descargarlo lo usamos a control remoto sin bajarlo
+	salio YARN,pero salio la nueva version de NPM y es mas rapido
+
+
+
+	desarrollo es cuando trabajamos en el proyecto-->servidor
+							-->ts
+							-->Babel
+	entonces me separa las dependencias
+
+
+
+
+
+			OTRO comando es NG SERVE
+
+					-->al levantar un servidor,en el localhost:4200
+					-->con la bandera  --OPEN,lo levanta
+					-->o NG SERVE -->OPEN 
+
+			el servidor queda escuchandolo,por eso vamos a hacerle cambios y los hace,con control c lo cancelamos
+
+			npm START
+			nom RUN COPIAR
+
+
+
+	EN SRC tenemos 3 carpetas,apps y assets,
+
+		en la carpeta assets vamos a tener todos nuestros archivos,al momento de produccion vamos a tener ciertos
+		cambios
+
+		donde vamos a escribir codigo es en la carpeta app,hay 4 app component y 1 module,
+		
+		si vamos a la de module
+		es el codigo,todo lo que incluya va a tener un modulo,un modulo es como una libreria,enlaza componentes
+		de angular,nos va a servir para poder separar nuestra aplicacion,todo lo que hacemos de angular,viene
+		de javascript,si no lo exportamos no se ve,en declaration van los componentes,los que quiero
+		usar en mi modulo,si no las pongo en este array no va a funcionar
+
+		en el array import van a ir todos los modulos externos que vamos a usar
+		
+		en el array providers,van a ser donde vamos a importar nuestros servicios,aca le avisamos,si no le avisamos 
+		al modulo no va a funcionar
+		
+		en bootstrap,va a decir donde va a empezar la aplicacion,el main o donde yo quiera
+
+
+	
+	Un componente,todos los nuevos frameworks se basan en estos,es un standard de html 5(nuevo),lo hicieron a traves
+	de angular 1(se basaban en componentes),google hizo que se hiciera un standard ese tipo de estructura,
+	los componentes no son ni mas ni menos que etiquietas nuevas  (MI-ETIQUETA),son unas nuevas etiquetas
+	
+	los web components nativos de html5,tienen 4 elementos
+
+		-->templates   (etiqueta que podemos poner en html pero no se ve,la hacemos visible cuando nosotros queremos)
+
+		-->custom elements  (etiquetas)
+
+		-->shadow dom (aisla,crea nuevos hilos en el programa,donde puedo tener mi propio css,javascript,que no interfiera con los otros,entre esos no van a conocer que tiene el otro,voy a encapsular mis datos)
+
+		-->imports  (importacion de archivos)
+
+
+	un componente en angular no es mas ni menos que un componente nativo en html5,la idea es reutilizarlos,para eso
+	estan los componentes.por ejemplo quiero usar mucho google maps y lo meto en una etiqueta (<mi-mapa > </mi-mapa>)
+
+
+
+	en component.css
+	en component.html
+	en component.specs.ts(de test)
+	en compoent.ts (lo que vamos a usar para interactuar con el html,el javascript antiguo)
+
+
+
+	como creamos un componente,lo trae un comando del angular cli,
+
+			--> Ng g(g de generate) o NG generate,podemos crear modulso,servicios pipes,y despuse el nombre del componente
+		
+			--> NG generate component miComponente
+				(tambien puedo indicar en que carpeta quiero que lo guarde)
+				ng generate component components/miComponente
+
+
+		lo actualiza en el module.ts(el import) y genera los 4 archivos que necesitamos,si usamos camelcase,cambia
+		el componente por un guion,porque en el standar dice que los custom elements siempre tienen que tener un guion
+		los de angular siempre empiezan con app,para asegurarse que tienen un guion
+
+
+		ahora vamos a escribir en el componente que creamos,el html
+
+
+		en typescript del componente que creamos,en selector vemos el nombre del componente,lo podemos modificar si queremos,
+		y lo llamamos en el html original
+
+
+la clase que viene vamos a ver los bindeos de datos,un texto fijo,manipular un texto de html por el typescript
